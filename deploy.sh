@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # deploy.sh — SanctionsAI funnel deploy
 # One command: ./deploy.sh
-# Requires: vercel CLI, authenticated (vercel login)
+# Deploys from repo root. Requires: vercel CLI, authenticated (vercel login)
 set -euo pipefail
 
-cd "$(dirname "$0")/build"
+cd "$(dirname "$0")"
 
 echo "🚀 Deploying SanctionsAI funnel to Vercel..."
-
-# Deploy to production, skip prompts
 vercel deploy --prod --yes
 
 echo ""
@@ -19,14 +17,13 @@ ROUTES="/ /about /webinar /thank-you /checkout-bump /check /blueprint /blueprint
 PASS=0; FAIL=0
 
 for path in $ROUTES; do
-  status=$(/usr/bin/curl -s -o /dev/null -w "%{http_code}" "$BASE$path" 2>/dev/null || echo "000")
-  label="$path"
-  [ "$label" = "/" ] && label="(landing)"
-  if [ "$status" = "200" ] || [ "$status" = "308" ]; then
-    echo "  ✓ $label → HTTP $status"
+  code=$(/usr/bin/curl -s -o /dev/null -w "%{http_code}" "$BASE$path" 2>/dev/null || echo "000")
+  [ "$path" = "/" ] && label="(landing)" || label="$path"
+  if [ "$code" = "200" ] || [ "$code" = "308" ]; then
+    echo "  ✓ $label → HTTP $code"
     PASS=$((PASS + 1))
   else
-    echo "  ✗ $label → HTTP $status"
+    echo "  ✗ $label → HTTP $code"
     FAIL=$((FAIL + 1))
   fi
 done
