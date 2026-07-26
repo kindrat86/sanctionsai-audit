@@ -1,0 +1,7 @@
+# SanctionsAI audit funnel — robots
+User-agent: *
+Allow: /
+Disallow: /thank-you
+Disallow: /checkout-bump
+
+Sitemap: https://sanctionsai-audit.vercel.app/sitemap.xml

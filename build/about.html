@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>About [Founder Name] — the reluctant compliance nerd behind SanctionsAI</title>
+<meta name="description" content="The founder's story: how a 3:14 AM near-miss turned a payment-rails engineer into the builder of the OFAC screening layer for AI agents." />
+<meta property="og:title" content="The reluctant compliance nerd behind SanctionsAI" />
+<meta property="og:type" content="profile" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#050505;--bg-2:#0a0a0b;--ink:#f5f5f4;--ink-dim:#a8a29e;--ink-faint:#57534e;
+  --line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.14);
+  --accent:#a3e635;--accent-2:#22d3ee;--danger:#f87171;--warn:#fbbf24;
+  --r-lg:2rem;--r-md:1.25rem;--r-sm:.75rem;
+  --ease:cubic-bezier(.32,.72,0,1);--ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;font-weight:400;line-height:1.5;letter-spacing:-.011em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.mesh{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.mesh::before,.mesh::after{content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.26}
+.mesh::before{width:55vw;height:55vw;left:-15vw;top:-5vh;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 60%)}
+.mesh::after{width:50vw;height:50vw;right:-15vw;top:50vh;background:radial-gradient(circle,rgba(163,230,53,.38),transparent 60%)}
+.mono{font-family:'Geist Mono',monospace;letter-spacing:-.01em}
+b,strong{color:var(--ink);font-weight:600}
+a{color:inherit;text-decoration:none}
+.accent{color:var(--accent)}.danger{color:var(--danger)}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--ink-dim);padding:.4rem .85rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+
+.nav{position:fixed;top:1.25rem;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:.5rem;padding:.5rem .5rem .5rem 1.1rem;border:1px solid var(--line-strong);border-radius:999px;background:rgba(8,8,9,.7);backdrop-filter:blur(20px) saturate(140%);box-shadow:0 20px 60px -20px rgba(0,0,0,.8)}
+.nav .brand{font-weight:600;letter-spacing:-.02em;font-size:.95rem;display:flex;align-items:center;gap:.5rem;color:var(--ink)}
+.nav .brand .mk{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#000;font-size:11px;font-weight:700}
+@media(max-width:600px){.nav{padding:.4rem .4rem .4rem .9rem}}
+
+.wrap{width:100%;max-width:880px;margin:0 auto;padding:0 1.5rem}
+section{padding:clamp(3.5rem,7vw,6rem) 0}
+
+/* Hero — name + portrait */
+.about-hero{padding:8rem 0 4rem}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+@media(max-width:780px){.about-grid{grid-template-columns:1fr}}
+.portrait{aspect-ratio:4/5;border-radius:var(--r-lg);
+  background:
+    linear-gradient(135deg,rgba(163,230,53,.14),transparent 50%),
+    linear-gradient(180deg,#15151260,#00000080),
+    radial-gradient(circle at 30% 20%,rgba(34,211,238,.28),transparent 55%);
+  border:1px solid var(--line-strong);position:relative;overflow:hidden;box-shadow:0 40px 80px -30px #000}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.75))}
+.portrait .caption{position:absolute;left:1rem;bottom:1rem;z-index:2;font-family:'Geist Mono',monospace;font-size:11px;color:var(--ink);letter-spacing:.05em}
+.portrait .caption b{color:var(--accent)}
+h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:600;letter-spacing:-.03em;line-height:1.08;margin:1.25rem 0 .75rem}
+h1 .hl{background:linear-gradient(180deg,#fff,#a8a29e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--ink-dim);margin-bottom:1.5rem;line-height:1.6}
+.sub b{color:var(--ink)}
+.creds{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.creds span{font-family:'Geist Mono',monospace;font-size:.74rem;color:var(--ink-dim);padding:.35rem .7rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.02)}
+
+/* Identity / archetype band */
+.archetype{padding:3rem 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.archetype .tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+.archetype h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:600;letter-spacing:-.025em;margin:.75rem 0;max-width:34rem;margin-left:auto;margin-right:auto;line-height:1.25}
+.archetype p{font-size:.95rem;color:var(--ink-dim);max-width:34rem;margin:0 auto}
+
+/* Two Journeys — external vs internal */
+.journeys h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:600;letter-spacing:-.028em;margin-bottom:.75rem;text-align:center}
+.journeys .intro{text-align:center;color:var(--ink-dim);max-width:34rem;margin:0 auto 3rem}
+.journey-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:780px){.journey-grid{grid-template-columns:1fr}}
+.jcard{padding:1.75rem;border:1px solid var(--line);border-radius:var(--r-lg);background:rgba(255,255,255,.015)}
+.jcard.internal{border-color:rgba(163,230,53,.3);background:linear-gradient(180deg,rgba(163,230,53,.04),rgba(163,230,53,.01))}
+.jcard .label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1rem}
+.jcard.internal .label{color:var(--accent)}
+.jcard h3{font-size:1.1rem;margin-bottom:1rem;font-weight:600;letter-spacing:-.02em}
+.jcard ol{list-style:none;display:grid;gap:.85rem;counter-reset:s}
+.jcard li{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start;font-size:.92rem;color:var(--ink-dim);counter-increment:s}
+.jcard li::before{content:counter(s);font-family:'Geist Mono',monospace;font-size:.72rem;color:var(--accent);border:1px solid var(--line);width:22px;height:22px;border-radius:6px;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.jcard li b{color:var(--ink)}
+
+/* Pull quote */
+.pullquote{padding:5rem 0;text-align:center}
+.pullquote blockquote{font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:500;letter-spacing:-.025em;line-height:1.25;max-width:38rem;margin:0 auto;color:var(--ink)}
+.pullquote blockquote .accent{color:var(--accent)}
+.pullquote cite{display:block;margin-top:1.5rem;font-family:'Geist Mono',monospace;font-size:.82rem;color:var(--ink-faint);font-style:normal}
+
+/* Beliefs then vs now */
+.beliefs{padding:5rem 0}
+.beliefs h2{text-align:center;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:600;letter-spacing:-.028em;margin-bottom:.5rem}
+.beliefs .intro{text-align:center;color:var(--ink-dim);max-width:32rem;margin:0 auto 3rem}
+.belief-grid{display:grid;gap:1rem;max-width:42rem;margin:0 auto}
+.belief{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;padding:1.1rem 1.25rem;border:1px solid var(--line);border-radius:var(--r-md);background:rgba(255,255,255,.012)}
+.belief .then,.belief .now{font-size:.9rem}
+.belief .then{color:var(--ink-faint);text-decoration:line-through;text-decoration-color:rgba(248,113,113,.4)}
+.belief .now{color:var(--ink)}
+.belief .now b{color:var(--accent)}
+.belief .arrow{color:var(--accent);font-family:'Geist Mono',monospace;font-size:1.1rem}
+@media(max-width:600px){.belief{grid-template-columns:1fr;text-align:center}.belief .then{text-decoration:none;color:var(--danger);font-style:italic}}
+
+/* The cause */
+.cause{padding:6rem 0;text-align:center;border-top:1px solid var(--line)}
+.cause .tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:inline-block}
+.cause h2{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;max-width:34rem;margin:0 auto 1.5rem}
+.cause p{font-size:1.05rem;max-width:36rem;margin:0 auto 1rem;color:var(--ink-dim)}
+.cause p b{color:var(--ink)}
+
+/* CTA */
+.cta{padding:5rem 0 6rem;text-align:center}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.4rem;border-radius:999px;font-weight:600;font-size:.97rem;letter-spacing:-.01em;border:none;cursor:pointer;font-family:inherit;transition:transform .4s var(--ease)}
+.btn .arrow{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.82rem;background:rgba(0,0,0,.15);transition:transform .4s var(--ease)}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary:hover .arrow{transform:translate(3px,-1px) scale(1.06);background:#000;color:var(--accent)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--line-strong)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.28)}
+.cta .row{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+
+footer{padding:2.5rem 0 3rem;border-top:1px solid var(--line);text-align:center;font-family:'Geist Mono',monospace;font-size:.8rem;color:var(--ink-faint)}
+footer a{color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+
+<nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><span class="mk">S</span>SanctionsAI</a>
+</nav>
+
+<!-- HERO -->
+<header class="about-hero">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="portrait"><div class="caption"><b>[Founder Name]</b> · founder · 2026</div></div>
+      <div>
+        <span class="eyebrow"><span class="dot"></span> The founder</span>
+        <h1>I'm not a compliance lawyer.<br>I'm a <span class="hl">builder</span>, like you.</h1>
+        <p class="sub">Three years ago my own AI agent almost wired money to a sanctioned wallet at <b>3:14 AM</b>. That scare built SanctionsAI. This is the longer version of that story — the <b>identity shift</b> that came with it, and why I think compliance is the missing layer of the agent economy.</p>
+        <div class="creds">
+          <span>ex-payment-rails eng</span>
+          <span>x402 contributor</span>
+          <span>MIT licensed</span>
+          <span>built 4 primitives</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ARCHETYPE -->
+<section class="archetype">
+  <div class="wrap">
+    <div class="tag">Attractive character archetype</div>
+    <h2>The Reluctant Hero.</h2>
+    <p>I didn't want to build a compliance company. I wanted to ship agent payments. Compliance found me at 3:14 AM — and the only way out was through.</p>
+  </div>
+</section>
+
+<!-- THE TWO JOURNEYS -->
+<section class="journeys">
+  <div class="wrap">
+    <h2>Every hero has two journeys.</h2>
+    <p class="intro">The external one is what I built. The internal one is who I had to become to build it. The second one is the part that actually matters.</p>
+
+    <div class="journey-grid">
+      <div class="jcard">
+        <div class="label">The external journey</div>
+        <h3>What I built</h3>
+        <ol>
+          <li><span><b>Spent years</b> on payment rails — x402, stablecoin flows, agent-to-agent payments.</span></li>
+          <li><span><b>3:14 AM scare</b> — my agent tried to pay a sanctioned wallet; a gas bug saved me.</span></li>
+          <li><span><b>Week-long deep dive</b> into OFAC, SDN, and what the rails actually check (nothing).</span></li>
+          <li><span><b>Built the 4 primitives</b> — sanctions_check, risk_score, kya_verify, dispute_open.</span></li>
+          <li><span><b>Shipped SanctionsAI</b> — one HTTP call before every payment, under 100ms.</span></li>
+        </ol>
+      </div>
+
+      <div class="jcard internal">
+        <div class="label">The internal journey</div>
+        <h3>Who I became</h3>
+        <ol>
+          <li><span><b>"Compliance is for banks."</b> That was me. Not my problem.</span></li>
+          <li><span><b>"The rail handles it."</b> My core false belief. Shattered at 3:14 AM.</span></li>
+          <li><span><b>"I'll deal with it later."</b> The most expensive sentence a builder can say.</span></li>
+          <li><span><b>The shift:</b> compliance isn't bureaucracy — it's the layer that lets you ship fast <em>without</em> going to court.</span></li>
+          <li><span><b>New identity:</b> the reluctant compliance nerd, so other builders don't have to become one.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div class="wrap">
+    <blockquote>"The rails move money. <span class="accent">They do not verify recipients.</span> That gap is where founders go to get indicted. I built the bridge."</blockquote>
+    <cite>— [Founder Name], founder of SanctionsAI</cite>
+  </div>
+</section>
+
+<!-- BELIEFS: THEN vs NOW -->
+<section class="beliefs">
+  <div class="wrap">
+    <h2>What I used to believe.</h2>
+    <p class="intro">If you're shipping agent payments, you hold at least one of these right now. Here's what 3:14 AM taught me.</p>
+    <div class="belief-grid">
+      <div class="belief"><span class="then">"The payment rail declines sanctioned wallets."</span><span class="arrow">→</span><span class="now">Rails move money. <b>Compliance is a separate layer.</b></span></div>
+      <div class="belief"><span class="then">"Compliance is enterprise paperwork."</span><span class="arrow">→</span><span class="now">It's <b>a lookup</b>. Address in, boolean out.</span></div>
+      <div class="belief"><span class="then">"The AI did it" is a defense."</span><span class="arrow">→</span><span class="now">No. <b>The human who built the agent</b> is on the hook.</span></div>
+      <div class="belief"><span class="then">"I'll add it before launch."</span><span class="arrow">→</span><span class="now">The SDN list updates weekly. <b>Today's clean is tomorrow's felony.</b></span></div>
+      <div class="belief"><span class="then">"A $19/mo tool can't be real compliance."</span><span class="arrow">→</span><span class="now">We bet <b>$10,000</b> that it is.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE CAUSE -->
+<section class="cause">
+  <div class="wrap">
+    <span class="tag">The cause</span>
+    <h2>Every agent is about to start moving money on its own.</h2>
+    <p>The rails are ready. The wallets are ready. The models are ready. The <b>one thing missing</b> is the compliance layer that keeps the builders out of federal court.</p>
+    <p>I'm building that layer — not because I wanted to, but because nobody else was. If you're shipping agent payments, I want you to ship them <b>without a federal investigation as your launch event.</b></p>
+    <p>That's the whole company.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:600;letter-spacing:-.028em;margin-bottom:.75rem">Come build with me.</h2>
+    <p style="color:var(--ink-dim);max-width:32rem;margin:0 auto">Start free, or grab the Dev tier and get the $10k guarantee. Either way — don't let your next agent payment be the one.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="/checkout-bump">Get my API key — $19/mo <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="/webinar">Watch the teardown <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 SanctionsAI · <a href="/">sanctionsai.dev</a> · MIT licensed · built for the agent economy</div>
+</footer>
+<script src="/analytics.js" defer></script>
+</body>
+</html>

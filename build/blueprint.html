@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The 5-Day Agent Compliance Blueprint — SanctionsAI</title>
+<meta name="description" content="Five days, five gates: the exact pattern for wiring OFAC compliance into your AI agent's payment path. SCREEN · SCORE · STOP · STAMP." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#fff;--ink:#0a0a0b;--ink-dim:#44403c;--ink-faint:#78716c;
+  --line:#e7e5e4;--accent:#4d7c0f;--accent-2:#0e7490;--danger:#dc2626;
+  --r-lg:1.25rem;--r-sm:.5rem;
+}
+@media print{
+  :root{--bg:#fff;font-size:13px}
+  .no-print{display:none!important}
+  nav,.cta-band{display:none!important}
+  body{margin:0}
+  @page{margin:1.5cm}
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-serif;font-weight:400;line-height:1.6;letter-spacing:-.008em;-webkit-font-smoothing:antialiased}
+.mono{font-family:'Geist Mono',monospace;letter-spacing:-.01em}
+b,strong{font-weight:600}
+a{color:var(--accent-2)}
+header{padding:3rem 2rem 2.5rem;text-align:center;border-bottom:1px solid var(--line);max-width:800px;margin:0 auto}
+header .tag{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.75rem;display:inline-block}
+header h1{font-size:2.2rem;font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:.75rem}
+header p{color:var(--ink-dim);font-size:1.05rem;max-width:34rem;margin:0 auto}
+
+article{max-width:680px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.day{margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line)}
+.day:last-child{border-bottom:none}
+.day .num{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;font-weight:600}
+.day h2{font-size:1.5rem;font-weight:600;letter-spacing:-.025em;margin-bottom:.5rem;line-height:1.2}
+.day h2 .q{color:var(--ink-dim);font-weight:400;font-size:1.1rem;display:block;margin-top:.3rem}
+.day p,.day li{color:var(--ink-dim);font-size:.97rem;margin-bottom:.85rem;line-height:1.65}
+.day ul,.day ol{margin-left:1.25rem;margin-bottom:1rem}
+.day li{margin-bottom:.5rem}
+.day pre{background:#f5f5f4;border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem 1.2rem;font-family:'Geist Mono',monospace;font-size:.85rem;line-height:1.6;overflow-x:auto;margin:1rem 0}
+.day .action{padding:1rem 1.25rem;background:#f1f8fe;border-left:3px solid var(--accent-2);border-radius:0 var(--r-sm) var(--r-sm) 0;margin:1.25rem 0;font-size:.93rem}
+.day .action b{color:var(--accent-2)}
+
+.cta-band{max-width:680px;margin:0 auto;padding:2rem 2rem 4rem;text-align:center}
+.cta-band .box{padding:1.5rem 2rem;border:1px solid var(--line);border-radius:var(--r-lg);background:#fafaf9}
+.cta-band h3{font-size:1.2rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem}
+.cta-band p{margin-bottom:1rem;color:var(--ink-dim)}
+.cta-band .row{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.3rem;border-radius:999px;font-weight:600;font-size:.92rem;letter-spacing:-.01em;cursor:pointer;font-family:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn:hover{transform:translateY(-1px)}
+
+footer{text-align:center;padding:2rem;font-family:'Geist Mono',monospace;font-size:.8rem;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="tag">SanctionsAI · Lead Magnet</span>
+  <h1>The 5-Day Agent Compliance Blueprint</h1>
+  <p>The exact pattern for wiring OFAC compliance into your AI agent's payment path. Five days. Five gates. One deploy checklist. <b>SCREEN · SCORE · STOP · STAMP.</b></p>
+</header>
+
+<article>
+  <div class="day">
+    <div class="num">Day 1</div>
+    <h2>Map Your Agent's Blast Radius <span class="q">Which of your agent's transactions could legally expose you?</span></h2>
+    <p>Most builders can't answer this on Day 1. Before any screening, you need to know which payments carry OFAC exposure.</p>
+    <p><b>OFAC's enforcement logic, simplified:</b> Who built the agent? (You.) Did it move value? (Yes.) Was the counterparty sanctioned? If so — <b>you</b> are the respondent. "The AI did it" is not a defense.</p>
+    <p><b>The 10-minute audit:</b> Open your agent's codebase. List every code path that calls <span class="mono">transfer</span>, <span class="mono">send</span>, or <span class="mono">settle</span> to an address you don't fully control.</p>
+    <div class="action"><b>Day 1 action →</b> Export that table. This is your blast radius. Days 2–5 close each row, one gate at a time.</div>
+  </div>
+
+  <div class="day">
+    <div class="num">Day 2</div>
+    <h2>The Screen Gate <span class="q">sanctions_check(wallet) → clean | flagged</span></h2>
+    <p>Today you add the call that would have stopped the 3:14 AM tx:</p>
+    <pre>curl https://sanctionsai.dev/sanctions?wallet=0x740d...b1f3</pre>
+    <p><b>Where it goes:</b> Synchronously. In the payment path. Before settle. Not in a queue. Before the value moves.</p>
+    <pre><b># The pattern — fits any framework</b>
+result = screen(wallet=invoice.payee, rail="x402", amount=invoice.usd)
+if not result.clean:
+    halt(tx=invoice, receipt=result.receipt)
+    return   # FAIL CLOSED. Always.</pre>
+    <p><b>Two rules:</b> (1) Fail closed — if the screen errors or times out, the tx halts. (2) Save the receipt — every check returns a <span class="mono">receipt</span> id. Store it with the transaction.</p>
+    <div class="action"><b>Day 2 action →</b> Wire <span class="mono">sanctions_check</span> into the highest-risk row of your Day 1 table. Test it against a known-flagged wallet. Watch it halt.</div>
+  </div>
+
+  <div class="day">
+    <div class="num">Day 3</div>
+    <h2>The Score Gate <span class="q">risk_score(tx) → a single number your agent can branch on</span></h2>
+    <p>A wallet can be off the SDN list and the transaction can still be a problem — structuring, anomalous amounts, rails with weak KYC.</p>
+    <p><b>Set two thresholds:</b> < 0.5 → auto-proceed. 0.5–0.75 → proceed with async review tag. > 0.75 → halt and surface to a human.</p>
+    <p>The thresholds are yours. They encode your risk appetite. SanctionsAI exposes the <em>factors</em> so you can see why a score is what it is.</p>
+    <div class="action"><b>Day 3 action →</b> Add <span class="mono">risk_score</span> as Gate 2, right after the screen gate. Log the factors on every tx. After a week you'll have a distribution that tells you your threshold.</div>
+  </div>
+
+  <div class="day">
+    <div class="num">Day 4</div>
+    <h2>The Stop + Dispute Gate <span class="q">dispute_open(tx, reason, receipt)</span></h2>
+    <p>Screening reduces risk. It doesn't eliminate it. A flagged wallet gets through a misconfigured agent. A counterparty gets sanctioned mid-flow. You need a paper trail.</p>
+    <p><b>The dispute flow</b> opens a case, attaches the audit trail, and auto-escalates after 7 days. This is the record a regulator asks for.</p>
+    <div class="action"><b>Day 4 action →</b> Wire the dispute flow into your agent's error path. Every halt, every post-settle flag, every user dispute → <span class="mono">dispute_open</span>. The audit trail builds itself.</div>
+  </div>
+
+  <div class="day">
+    <div class="num">Day 5</div>
+    <h2>The Stamp Gate + Deploy Checklist <span class="q">save receipt(rcpt_id) — the artifact your lawyer wants</span></h2>
+    <p>The receipt is the whole game. It is the difference between a fine and a warning. Between a lawsuit and a footnote. Every screen returns a permanent, timestamped <span class="mono">receipt</span> — the proof that at the time of the check, the counterparty was not on the list.</p>
+    <p><b>Retain receipts for at least 5 years.</b> OFAC's statute of limitations on civil penalties is 5 years. The receipt proves the violation wasn't willful.</p>
+    <p><b>Deploy checklist — go through every row from Day 1:</b></p>
+    <ul>
+      <li>☐ <b>SCREEN</b> — sanctions_check wired in, fail-closed</li>
+      <li>☐ <b>SCORE</b> — risk_score gating high-risk transactions</li>
+      <li>☐ <b>STOP</b> — halt + dispute_open on any flag</li>
+      <li>☐ <b>STAMP</b> — receipt stored with the transaction, retained 5 years</li>
+      <li>☐ <b>MONITOR</b> — list-version drift alerts</li>
+    </ul>
+    <p>When every row has all five boxes checked, you have what most enterprise compliance programs don't: a <b>complete, auditable, automated record on every transaction.</b></p>
+  </div>
+</article>
+
+<div class="cta-band no-print">
+  <div class="box">
+    <h3>Ready to implement this?</h3>
+    <p>Start free — 5 checks/day, no signup. Or Dev for $19/mo with the $10k guarantee.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="/checkout-bump">Get my API key →</a>
+      <a class="btn" href="/">Start free</a>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 SanctionsAI · MIT licensed · save as PDF (⌘P) or read the 5-day email version in your inbox</footer>
+<script src="/analytics.js" defer></script>
+</body>
+</html>
