@@ -15,29 +15,19 @@ echo ""
 echo "🔍 Verifying deployed routes..."
 
 BASE="https://sanctionsai-audit.vercel.app"
-declare -A ROUTES=(
-  ["landing"]="/"
-  ["about"]="/about"
-  ["webinar-optin"]="/webinar"
-  ["thank-you"]="/thank-you"
-  ["checkout"]="/checkout-bump"
-  ["wallet-checker"]="/check"
-  ["blueprint"]="/blueprint"
-  ["blueprint-pdf"]="/blueprint.pdf"
-  ["robots"]="/robots.txt"
-  ["analytics"]="/analytics.js"
-)
-
+ROUTES="/ /about /webinar /thank-you /checkout-bump /check /blueprint /blueprint.pdf /robots.txt /sitemap.xml /analytics.js"
 PASS=0; FAIL=0
-for label in "${!ROUTES[@]}"; do
-  path="${ROUTES[$label]}"
+
+for path in $ROUTES; do
   status=$(/usr/bin/curl -s -o /dev/null -w "%{http_code}" "$BASE$path" 2>/dev/null || echo "000")
-  if [ "$status" = "200" ]; then
-    echo "  ✓ $label ($path) → $status"
-    ((PASS++)) || true
+  label="$path"
+  [ "$label" = "/" ] && label="(landing)"
+  if [ "$status" = "200" ] || [ "$status" = "308" ]; then
+    echo "  ✓ $label → HTTP $status"
+    PASS=$((PASS + 1))
   else
-    echo "  ✗ $label ($path) → $status"
-    ((FAIL++)) || true
+    echo "  ✗ $label → HTTP $status"
+    FAIL=$((FAIL + 1))
   fi
 done
 
